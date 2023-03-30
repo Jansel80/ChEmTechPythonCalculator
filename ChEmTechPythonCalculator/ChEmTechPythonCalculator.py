@@ -18,7 +18,7 @@ CHEMICAL KINETICS
 Chemical Equilibrium 
 ✅🧪 Kc = [products] / [reactants] 
 ✅🧪 Qc = [products] / [reactants] 
-😖🧪 Kp = [P products] / [P reactants]
+✅🧪 Kp = [P products] / [P reactants]
 ✅ 🧪 Kc from Kp 
 
 
@@ -41,7 +41,7 @@ def balls():
     bar = "████████████████████████████████████████████████████████████████"
     print(loading)
     for c in bar:
-        time.sleep(0.007)
+        time.sleep(0.05)
         sys.stdout.write(c)
         sys.stdout.flush()
     print("")
@@ -104,20 +104,21 @@ def solveKc():
 
 #finding kP
 def solveKp():
-    # define the coefficients of the balanced chemical equation
+
+     # define the coefficients of the balanced chemical equation
     gatherCoefficientsABCD()
 
-    # define the concentrations of the reactants and products
-    gatherConcentrationsABCD(typeofvar="partial pressures")
+    # Get the partial pressures of the reactants and products
+    Pa = float(input("Enter the partial pressure of A: "))
+    Pb = float(input("Enter the partial pressure of B: "))
+    Pc = float(input("Enter the partial pressure of C: "))
+    Pd = float(input("Enter the partial pressure of D: "))
 
-    # calculate the reaction quotient Qc
-    Kc = (c_concentration ** c_coeff) * (d_concentration ** d_coeff) / ((a_concentration ** a_coeff) * (b_concentration ** b_coeff))
+    # Calculate Kp using the formula
+    Kp = (Pc ** c_coeff * Pd ** d_coeff) / (Pa ** a_coeff * Pb ** b_coeff)
 
-    # calculate the equilibrium constant Kc
-    Kc = Kc
-
-    # print the equilibrium constant Kc
-    print("The equilibrium constant Kc is:", Kc)
+    # Print the result
+    print("The equilibrium constant Kp is:", Kp)
 
 #finding Qc
 def solveQc():
@@ -176,6 +177,7 @@ while (x=="true"):
     print("")
     balls()
     print("")
+
     print("Please Select a Subtopic:")
     print("")
     print("(a.) Solve Standard Enthalpy Change")
