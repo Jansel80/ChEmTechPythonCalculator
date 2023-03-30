@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ChEmTechPythonCalculator",
+    "\\ChEmTechPythonCalculator\\obj",
+    "\\ChEmTechPythonCalculator\\obj\\Debug"
   ],
+  "SelectedNode": "\\ChEmTechPythonCalculator\\ChEmTechPythonCalculator.py",
   "PreviewInSolutionExplorer": false
 }

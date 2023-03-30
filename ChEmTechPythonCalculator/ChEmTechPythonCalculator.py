@@ -35,13 +35,16 @@ ACIDS & BASES
 import time
 import math
 import sys
+from turtle import goto
 
-def balls():
+
+#for loading screen
+def loading_screen():
     loading= "LOADING\n"
     bar = "████████████████████████████████████████████████████████████████"
     print(loading)
     for c in bar:
-        time.sleep(0.05)
+        time.sleep(0.005)
         sys.stdout.write(c)
         sys.stdout.flush()
     print("")
@@ -168,14 +171,106 @@ def solveStandardEntropyChange():
     # print the value of ΔS°
     print("The standard entropy change ΔS° is:", delta_s, "J/(mol*K)")
 
-x = "true"
 
+"""
+ACIDS & BASES 
+⚗️ pH  = 14 - pOH 
+⚗️ pOH = 14 - pH 
+⚗️ pH  =-log[H+]
+⚗️ [H+] = 10^-pH
+⚗️ pH  =-log[OH-]
+⚗️ [H+] = 10^-pOH
+⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
+"""
+def acids_bases():
+    restartABCondition = 1
+
+    while restartABCondition == 1:
+        print("")
+        loading_screen()
+        print("")
+        print("What are you looking for?:")
+        print("")
+        acids_bases_selection = input()
+
+
+        match acids_bases_selection:
+            case "a":
+                print("")
+                print("Find pH from pOH")
+                print("")
+                abInput = float(input("Enter the value of pOH\n"))
+                abInputRound = round(abInput)
+                pH = 14-abInputRound
+                print("\n Your PH is " , pH)
+                time.sleep(0.5)
+                print("")
+                print("Press Y to Restart, N if you want to end\n\n")
+                growingFlower = input()
+                if growingFlower == "Y":
+                    
+                    growingFlowerSeed = 1
+
+                else:
+                    
+                    growingFlowerSeed = 0
+
+                growingFlowerSeed = restartABCondition
+                
+            
+            case "b":
+                print("")
+                print("StandardEntropyChange")
+                print("")
+                solveStandardEntropyChange()
+            case "c":
+                print("")
+                print("Solving for Kc")
+                print("")
+                solveKc()
+            case "d":
+                print("")
+                print("Solving for Qc")
+                print("")
+                solveQc()
+            case "e":
+                print("")
+                print("Solving for Kc from Kp")
+                print("")
+                solveKcKp1()
+            case "f":
+                print("")
+                print("Solving for Kp")
+                print("")
+                solveKp()
+            case "g":
+                print("")
+                print("Acids & Bases")
+                print("")
+                acids_bases()
+            case "j":
+                print("")
+                print("You have accessed the easter egg")
+                print("")
+                acids_bases()
+    else:
+        print("BYEBYE")
+        
+        
+
+#MAIN CODE
+#MAIN CODE
+#MAIN CODE
+
+x = "true"
 while (x=="true"):
     print("Good Day, This is 12D Group 1's Chemistry 2 Calculator!\n\n")
     print("This will cover a section of all topics of Chemistry 2. \n\nPlease wait as we load the calculators")
     time.sleep(0.5)
     print("")
-    balls()
+
+    loading_screen()
+
     print("")
 
     print("Please Select a Subtopic:")
@@ -186,7 +281,9 @@ while (x=="true"):
     print("(d.) Solve Qc with 2 reactans and 2 products")
     print("(e.) Solve for Kc from Kp")
     print("(f.) Solve Kp with 2 reactans and 2 products")
-
+    print("")
+    print("")
+    print("(g.) Acids & Bases")
 
     selection = input()
 
@@ -211,10 +308,25 @@ while (x=="true"):
             print("Solving for Qc")
             print("")
             solveQc()
-        case "d":
+        case "e":
             print("")
             print("Solving for Kc from Kp")
             print("")
             solveKcKp1()
-
-    break
+        case "f":
+            print("")
+            print("Solving for Kp")
+            print("")
+            solveKp()
+        case "g":
+            print("")
+            print("Acids & Bases")
+            print("")
+            acids_bases()
+        case "j":
+            print("")
+            print("You have accessed the easter egg")
+            print("")
+            acids_bases()
+else:
+    print("Goodbye! Thank you for using ChEmTechPythoncalculator!")
