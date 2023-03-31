@@ -207,7 +207,7 @@ def acids_bases():
                 print("")
                 print("Press Y to Restart, N if you want to end\n\n")
                 growingFlower = input()
-                if growingFlower == "Y":
+                if growingFlower == "Y" or growingFlower == "y":
                     
                     growingFlowerSeed = 1
 
@@ -215,7 +215,7 @@ def acids_bases():
                     
                     growingFlowerSeed = 0
 
-                growingFlowerSeed = restartABCondition
+                restartABCondition = growingFlowerSeed
                 
             
             case "b":
