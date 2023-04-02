@@ -23,13 +23,13 @@ Chemical Equilibrium
 
 
 ACIDS & BASES 
-⚗️ pH  = 14 - pOH 
-⚗️ pOH = 14 - pH 
-⚗️ pH  =-log[H+]
-⚗️ [H+] = 10^-pH
-⚗️ pH  =-log[OH-]
-⚗️ [H+] = 10^-pOH
-⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
+✅⚗️ pH  = 14 - pOH 
+✅⚗️ pOH = 14 - pH 
+✅⚗️ pH  =-log[H+]
+✅⚗️ [H+] = 10^-pH
+✅⚗️ pH  =-log[OH-]
+✅⚗️ [H+] = 10^-pOH
+✅⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
 """
 #initial setup
 import time
@@ -170,16 +170,7 @@ def solveStandardEntropyChange():
     print("The standard entropy change ΔS° is:", delta_s, "J/(mol*K)")
 
 
-"""
-ACIDS & BASES 
-⚗️ pH  = 14 - pOH 
-⚗️ pOH = 14 - pH 
-⚗️ pH  =-log[H+]
-⚗️ [H+] = 10^-pH
-⚗️ pOH  =-log[OH-]
-⚗️ [H+] = 10^-pOH
-⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
-"""
+#Acids and Bases Section
 def acids_bases():
     restartABCondition = 1
 
@@ -201,59 +192,67 @@ def acids_bases():
                     pH = 14-pOHInputRound
                     print("\n Your PH is " , pH, "\n")
                     print("The total value of pH + pOH then should be 14 =", int(pH+pOHInput))
-                    time.sleep(0.5)
-                    print("")
-                    print("Press Y to Restart, N if you want to end\n\n")
-                    restartABConditionInput = input()
-                    if restartABConditionInput == "Y" or restartABConditionInput == "y":
-                    
-                        restartABConditionDecision = 1
-
-                    else:
-
-                        restartABConditionDecision = 0
-
-                    restartABCondition = restartABConditionDecision
-                
             
                 case "b":
                     print("")
-                    print("StandardEntropyChange")
+                    print("Find pOH from pH")
                     print("")
-                    solveStandardEntropyChange()
+                    pHInput = float(input("Enter the value of pOH\n"))
+                    pHInputRound = round(pHInput)
+                    pOH = 14-pHInputRound
+                    print("\n Your PH is " , pH, "\n")
+                    print("The total value of pH + pOH then should be 14 =", int(pOH+pHInput))
+
                 case "c":
                     print("")
-                    print("Solving for Kc")
+                    print("Finding pH from H+")
                     print("")
-                    solveKc()
+                    HInput = float(input("Enter the numerical value of H+\n"))
+                    pH = -math.log10(HInput)
+                    print("\n Your pH is " , round(pH), "\n")
+
                 case "d":
                     print("")
-                    print("Solving for Qc")
+                    print("Finding H+ from pH")
                     print("")
-                    solveQc()
+                    pHInput = float(input("Enter the numerical value of pH\n"))
+                    H = 10**-(pHInput)
+                    print("\n Your H+ is " , '{:.5e}'.format(H), "M \n")
+
                 case "e":
                     print("")
-                    print("Solving for Kc from Kp")
+                    print("Find pOH from OH-")
                     print("")
-                    solveKcKp1()
+                    OHInput = float(input("Enter the numerical value of OH-\n"))
+                    pOH = -math.log10(OHInput)
+                    print("\n Your pOH is " , round(pOH), "\n")
+
                 case "f":
                     print("")
-                    print("Solving for Kp")
+                    print("Finding OH- from pOH")
                     print("")
-                    solveKp()
-                case "g":
-                    print("")
-                    print("Acids & Bases")
-                    print("")
-                    acids_bases()
-                case "j":
-                    print("")
-                    print("You have accessed the easter egg")
-                    print("")
-                    acids_bases()
+                    pOHInput = float(input("Enter the numerical value of pOH\n"))
+                    OH = 10**-(pOHInput)
+                    print("\n Your OH- is " , '{:.5e}'.format(OH), "M \n")
+
         except:
             print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Returning you now to the main program.")
+       
+
+        #Restart Condition with wait time before it
+        time.sleep(0.5)
+        print("")
+        print("Press Y to Restart, N if you want to end\n\n")
+        restartABConditionInput = input()
+        if restartABConditionInput == "Y" or restartABConditionInput == "y":
+                    
+            restartABConditionDecision = 1
+        else:
+            restartABConditionDecision = 0
+        restartABCondition = restartABConditionDecision
+
     else:
+        #If it restarts, it prints BYEBYE and clears the terminal.
         print("BYEBYE")
         os.system('cls||clear')
         
