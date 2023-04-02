@@ -35,16 +35,14 @@ ACIDS & BASES
 import time
 import math
 import sys
-from turtle import goto
+import os
 
 
 #for loading screen
 def loading_screen():
-    loading= "LOADING\n"
     bar = "████████████████████████████████████████████████████████████████"
-    print(loading)
     for c in bar:
-        time.sleep(0.005)
+        time.sleep(0.001)
         sys.stdout.write(c)
         sys.stdout.flush()
     print("")
@@ -178,7 +176,7 @@ ACIDS & BASES
 ⚗️ pOH = 14 - pH 
 ⚗️ pH  =-log[H+]
 ⚗️ [H+] = 10^-pH
-⚗️ pH  =-log[OH-]
+⚗️ pOH  =-log[OH-]
 ⚗️ [H+] = 10^-pOH
 ⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
 """
@@ -188,73 +186,76 @@ def acids_bases():
     while restartABCondition == 1:
         print("")
         loading_screen()
-        print("")
-        print("What are you looking for?:")
-        print("")
+        print("\nWhat are you looking for?:\n")
+        print("a.)Finding pH from pOH\nb.) Finding pOH from pH\nC.) Finding pH from H+\nD.) Finding H+ from pH\nE.) Finding Finding pOH from OH-\nF.) Finding OH- from pOH")
         acids_bases_selection = input()
 
-
-        match acids_bases_selection:
-            case "a":
-                print("")
-                print("Find pH from pOH")
-                print("")
-                abInput = float(input("Enter the value of pOH\n"))
-                abInputRound = round(abInput)
-                pH = 14-abInputRound
-                print("\n Your PH is " , pH)
-                time.sleep(0.5)
-                print("")
-                print("Press Y to Restart, N if you want to end\n\n")
-                growingFlower = input()
-                if growingFlower == "Y" or growingFlower == "y":
+        try:
+            match acids_bases_selection:
+                case "a":
+                    print("")
+                    print("Find pH from pOH")
+                    print("")
+                    pOHInput = float(input("Enter the value of pOH\n"))
+                    pOHInputRound = round(pOHInput)
+                    pH = 14-pOHInputRound
+                    print("\n Your PH is " , pH, "\n")
+                    print("The total value of pH + pOH then should be 14 =", int(pH+pOHInput))
+                    time.sleep(0.5)
+                    print("")
+                    print("Press Y to Restart, N if you want to end\n\n")
+                    restartABConditionInput = input()
+                    if restartABConditionInput == "Y" or restartABConditionInput == "y":
                     
-                    growingFlowerSeed = 1
+                        restartABConditionDecision = 1
 
-                else:
-                    
-                    growingFlowerSeed = 0
+                    else:
 
-                restartABCondition = growingFlowerSeed
+                        restartABConditionDecision = 0
+
+                    restartABCondition = restartABConditionDecision
                 
             
-            case "b":
-                print("")
-                print("StandardEntropyChange")
-                print("")
-                solveStandardEntropyChange()
-            case "c":
-                print("")
-                print("Solving for Kc")
-                print("")
-                solveKc()
-            case "d":
-                print("")
-                print("Solving for Qc")
-                print("")
-                solveQc()
-            case "e":
-                print("")
-                print("Solving for Kc from Kp")
-                print("")
-                solveKcKp1()
-            case "f":
-                print("")
-                print("Solving for Kp")
-                print("")
-                solveKp()
-            case "g":
-                print("")
-                print("Acids & Bases")
-                print("")
-                acids_bases()
-            case "j":
-                print("")
-                print("You have accessed the easter egg")
-                print("")
-                acids_bases()
+                case "b":
+                    print("")
+                    print("StandardEntropyChange")
+                    print("")
+                    solveStandardEntropyChange()
+                case "c":
+                    print("")
+                    print("Solving for Kc")
+                    print("")
+                    solveKc()
+                case "d":
+                    print("")
+                    print("Solving for Qc")
+                    print("")
+                    solveQc()
+                case "e":
+                    print("")
+                    print("Solving for Kc from Kp")
+                    print("")
+                    solveKcKp1()
+                case "f":
+                    print("")
+                    print("Solving for Kp")
+                    print("")
+                    solveKp()
+                case "g":
+                    print("")
+                    print("Acids & Bases")
+                    print("")
+                    acids_bases()
+                case "j":
+                    print("")
+                    print("You have accessed the easter egg")
+                    print("")
+                    acids_bases()
+        except:
+            print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Returning you now to the main program.")
     else:
         print("BYEBYE")
+        os.system('cls||clear')
         
         
 
@@ -265,8 +266,8 @@ def acids_bases():
 x = "true"
 while (x=="true"):
     print("Good Day, This is 12D Group 1's Chemistry 2 Calculator!\n\n")
-    print("This will cover a section of all topics of Chemistry 2. \n\nPlease wait as we load the calculators")
-    time.sleep(0.5)
+    print("This will cover a section of all topics of Chemistry 2. \n\n")
+    time.sleep(0.05)
     print("")
 
     loading_screen()
@@ -286,7 +287,7 @@ while (x=="true"):
     print("(g.) Acids & Bases")
 
     selection = input()
-
+    os.system('cls||clear')
     match selection:
         case "a":
             print("")
