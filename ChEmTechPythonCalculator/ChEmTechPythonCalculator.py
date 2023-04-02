@@ -10,9 +10,9 @@ THERMOCHEMISTRY
 
 CHEMICAL KINETICS 
 🧬 FIRST ORDER REACTIONS 
-- When determining the time: ln [A]t [A]0=-kt
-- When determining the final concentration: ln  [A]t =-kt +ln [A]0
-- When determining the half-life: m= Δm [A]0
+✅- When determining the time: ln [A]t [A]0=-kt
+✅- When determining the final concentration: ln  [A]t =-kt +ln [A]0
+✅- When determining the half-life: m= Δm [A]0
 
 
 Chemical Equilibrium 
@@ -32,10 +32,12 @@ ACIDS & BASES
 ✅⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
 """
 #initial setup
+from email.policy import default
 import time
 import math
 import sys
 import os
+from turtle import goto
 
 
 #for loading screen
@@ -180,7 +182,6 @@ def acids_bases():
         print("\nWhat are you looking for?:\n")
         print("a.)Finding pH from pOH\nb.) Finding pOH from pH\nC.) Finding pH from H+\nD.) Finding H+ from pH\nE.) Finding Finding pOH from OH-\nF.) Finding OH- from pOH")
         acids_bases_selection = input()
-
         try:
             match acids_bases_selection:
                 case "a":
@@ -239,7 +240,7 @@ def acids_bases():
             print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Returning you now to the main program.")
        
 
-        #Restart Condition with wait time before it
+        #Restart Condition with wait time before.
         time.sleep(0.5)
         print("")
         print("Press Y to Restart, N if you want to end\n\n")
@@ -255,8 +256,114 @@ def acids_bases():
         #If it restarts, it prints BYEBYE and clears the terminal.
         print("BYEBYE")
         os.system('cls||clear')
+
+def chemicalKineticsTime():
+
+    IC=float(input("Please input Initial Concentration:\n"))
+    FC=float(input("\nPlease input Final Concentration:\n"))
+    k=float(input("Input the rate constant\n"))
+    unitTime=input("Is the rate constant in Minutes(m) or Seconds(s)\n")
+    unitTimeVar=input("Is Required Time in Minutes (m) or Seconds (s)?\n")
+
+    cKTime = math.log(FC/IC)/(-k)
+
+    if unitTimeVar==unitTime:
+        pass
+    elif unitTimeVar=="s" and unitTime =="m":
+        finaltime = cKTime*60
+    elif unitTimeVar=="m" and unitTime =="s":
+        finaltime = cKTime*60
+
+    print(finaltime,"",unitTimeVar)
+    time.sleep(3)
+
+def chemicalKineticsFC():
+    IC=float(input("Please input Initial Concentration:\n"))
+    cKTime=float(input("\nPlease input Time:\n"))
+    k=float(input("Input the rate constant\n"))
+
+
+    lnA = -k*cKTime + math.log(IC)
+    FC= math.e**lnA
+
+    print("Your final concentration is ",FC,"M")
+
+def chemicalKineticsHL():
+    k=float(input("Input the rate constant\n"))
+
+    HL=math.log(2)/k
+    
+
+
         
+def chemicalKinetics():
+    print("Chemical Kinetics Section Active\n\nAt this time, only first order reactions can be solved.")
+    loading_screen()
+    chemicalKineticsProceed = 1
+    while chemicalKineticsProceed == 1  and not chemicalKineticsProceed==-1:
+        os.system('cls||clear')
+        isICGiven = input("Is Initial Concentration Given? Y or N?\n")
+        isFCGiven = input("Is Final Concentration Given? Y or N?\n")
+        isTGiven = input("Is Time Given? Y or N?\n")
+        iskGiven = input("Is rate constant given? Y or N?\n")
+
+        if isICGiven=="Y" or isICGiven=="y" or isICGiven=="yes" or isICGiven=="Yes" or isICGiven=="YES":
+            ICGValue=1
+        else:
+            ICGValue=0
+
+        if isFCGiven=="Y" or isFCGiven=="y" or isFCGiven=="yes" or isFCGiven=="Yes" or isFCGiven=="YES":
+            FCGValue=1
+        else:
+            FCGValue=0
+        if isTGiven=="Y" or isTGiven=="y" or isTGiven=="yes" or isTGiven=="Yes" or isTGiven=="YES":
+            TGValue=1
+        else:
+            TGValue=0
+
+        if iskGiven=="Y" or iskGiven=="y" or iskGiven=="yes" or iskGiven=="Yes" or iskGiven=="YES":
+            kconstGValue=1
+        else:
+            kconstGValue=0
+
+        if ICGValue==1 and FCGValue==1 and kconstGValue==1 and TGValue==0:
+            os.system('cls||clear')
+            print("\nWe will solve Time using initial concentration, final concentration, and rate constant\n\n")
+            chemicalKineticsProceed==0
+            chemicalKineticsTime()
+            pass
+
+        if ICGValue==1 and FCGValue==0 and kconstGValue==1 and TGValue==1:
+            os.system('cls||clear')
+            print("\nWe will solve Final Concentration using initial concentration, time, and rate constant\n\n")
+            chemicalKineticsProceed==0
+            chemicalKineticsFC()
+            pass
         
+        if ICGValue==0 and FCGValue==0 and kconstGValue==1 and TGValue==0:
+            os.system('cls||clear')
+            proceedHalfLife=input("Are you finding half life? Y or N \n")
+            if proceedHalfLife=="y" or proceedHalfLife=="Y" or proceedHalfLife=="Yes" or proceedHalfLife=="YES":
+                print("\nWe will now proceed with finding half life!\n Half life relies on rate alone which means all we need is rate constant! \n")
+                os.system('cls||clear')
+                chemicalKineticsHL()
+            else:
+                os.system('cls||clear')                   
+                break
+
+
+
+        print("")
+        print("Press Y to Restart, N if you want to end\n\n")
+        restartCKConditionInput = input()
+        if restartCKConditionInput == "Y" or restartCKConditionInput == "y":
+                restartCKConditionDecision = 1
+        else:
+                restartCKConditionDecision = 0
+
+        chemicalKineticsProceed = restartCKConditionDecision
+
+
 
 #MAIN CODE
 #MAIN CODE
@@ -281,9 +388,9 @@ while (x=="true"):
     print("(d.) Solve Qc with 2 reactans and 2 products")
     print("(e.) Solve for Kc from Kp")
     print("(f.) Solve Kp with 2 reactans and 2 products")
-    print("")
-    print("")
+    print("//The topics below have their own subsections!//")
     print("(g.) Acids & Bases")
+    print("(h.) Chemical Kinetics")
 
     selection = input()
     os.system('cls||clear')
@@ -323,6 +430,11 @@ while (x=="true"):
             print("Acids & Bases")
             print("")
             acids_bases()
+        case "h":
+            print("")
+            print("First Order Chemical Kinetics")
+            print("")
+            chemicalKinetics()
         case "j":
             print("")
             print("You have accessed the easter egg")
