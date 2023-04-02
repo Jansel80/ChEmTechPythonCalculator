@@ -35,13 +35,14 @@ ACIDS & BASES
 import time
 import math
 import sys
+import os
 
-def balls():
-    loading= "LOADING\n"
+
+#for loading screen
+def loading_screen():
     bar = "████████████████████████████████████████████████████████████████"
-    print(loading)
     for c in bar:
-        time.sleep(0.05)
+        time.sleep(0.001)
         sys.stdout.write(c)
         sys.stdout.flush()
     print("")
@@ -168,14 +169,108 @@ def solveStandardEntropyChange():
     # print the value of ΔS°
     print("The standard entropy change ΔS° is:", delta_s, "J/(mol*K)")
 
-x = "true"
 
+"""
+ACIDS & BASES 
+⚗️ pH  = 14 - pOH 
+⚗️ pOH = 14 - pH 
+⚗️ pH  =-log[H+]
+⚗️ [H+] = 10^-pH
+⚗️ pOH  =-log[OH-]
+⚗️ [H+] = 10^-pOH
+⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
+"""
+def acids_bases():
+    restartABCondition = 1
+
+    while restartABCondition == 1:
+        print("")
+        loading_screen()
+        print("\nWhat are you looking for?:\n")
+        print("a.)Finding pH from pOH\nb.) Finding pOH from pH\nC.) Finding pH from H+\nD.) Finding H+ from pH\nE.) Finding Finding pOH from OH-\nF.) Finding OH- from pOH")
+        acids_bases_selection = input()
+
+        try:
+            match acids_bases_selection:
+                case "a":
+                    print("")
+                    print("Find pH from pOH")
+                    print("")
+                    pOHInput = float(input("Enter the value of pOH\n"))
+                    pOHInputRound = round(pOHInput)
+                    pH = 14-pOHInputRound
+                    print("\n Your PH is " , pH, "\n")
+                    print("The total value of pH + pOH then should be 14 =", int(pH+pOHInput))
+                    time.sleep(0.5)
+                    print("")
+                    print("Press Y to Restart, N if you want to end\n\n")
+                    growingFlower = input()
+                    if growingFlower == "Y":
+                    
+                        growingFlowerSeed = 1
+
+                    else:
+                    
+                        growingFlowerSeed = 0
+
+                    growingFlowerSeed = restartABCondition
+                
+            
+                case "b":
+                    print("")
+                    print("StandardEntropyChange")
+                    print("")
+                    solveStandardEntropyChange()
+                case "c":
+                    print("")
+                    print("Solving for Kc")
+                    print("")
+                    solveKc()
+                case "d":
+                    print("")
+                    print("Solving for Qc")
+                    print("")
+                    solveQc()
+                case "e":
+                    print("")
+                    print("Solving for Kc from Kp")
+                    print("")
+                    solveKcKp1()
+                case "f":
+                    print("")
+                    print("Solving for Kp")
+                    print("")
+                    solveKp()
+                case "g":
+                    print("")
+                    print("Acids & Bases")
+                    print("")
+                    acids_bases()
+                case "j":
+                    print("")
+                    print("You have accessed the easter egg")
+                    print("")
+                    acids_bases()
+        except:
+            print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Returning you now to the main program.")
+    else:
+        print("BYEBYE")
+        
+        
+
+#MAIN CODE
+#MAIN CODE
+#MAIN CODE
+
+x = "true"
 while (x=="true"):
     print("Good Day, This is 12D Group 1's Chemistry 2 Calculator!\n\n")
-    print("This will cover a section of all topics of Chemistry 2. \n\nPlease wait as we load the calculators")
-    time.sleep(0.5)
+    print("This will cover a section of all topics of Chemistry 2. \n\n")
+    time.sleep(0.05)
     print("")
-    balls()
+
+    loading_screen()
+
     print("")
 
     print("Please Select a Subtopic:")
@@ -186,10 +281,12 @@ while (x=="true"):
     print("(d.) Solve Qc with 2 reactans and 2 products")
     print("(e.) Solve for Kc from Kp")
     print("(f.) Solve Kp with 2 reactans and 2 products")
-
+    print("")
+    print("")
+    print("(g.) Acids & Bases")
 
     selection = input()
-
+    os.system('cls||clear')
     match selection:
         case "a":
             print("")
@@ -211,10 +308,25 @@ while (x=="true"):
             print("Solving for Qc")
             print("")
             solveQc()
-        case "d":
+        case "e":
             print("")
             print("Solving for Kc from Kp")
             print("")
             solveKcKp1()
-
-    break
+        case "f":
+            print("")
+            print("Solving for Kp")
+            print("")
+            solveKp()
+        case "g":
+            print("")
+            print("Acids & Bases")
+            print("")
+            acids_bases()
+        case "j":
+            print("")
+            print("You have accessed the easter egg")
+            print("")
+            acids_bases()
+else:
+    print("Goodbye! Thank you for using ChEmTechPythoncalculator!")
