@@ -204,16 +204,16 @@ def acids_bases():
                     time.sleep(0.5)
                     print("")
                     print("Press Y to Restart, N if you want to end\n\n")
-                    growingFlower = input()
-                    if growingFlower == "Y":
+                    restartABConditionInput = input()
+                    if restartABConditionInput == "Y" or restartABConditionInput == "y":
                     
-                        growingFlowerSeed = 1
+                        restartABConditionDecision = 1
 
                     else:
-                    
-                        growingFlowerSeed = 0
 
-                    growingFlowerSeed = restartABCondition
+                        restartABConditionDecision = 0
+
+                    restartABCondition = restartABConditionDecision
                 
             
                 case "b":
@@ -255,6 +255,7 @@ def acids_bases():
             print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Returning you now to the main program.")
     else:
         print("BYEBYE")
+        os.system('cls||clear')
         
         
 
