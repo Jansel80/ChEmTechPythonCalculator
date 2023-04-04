@@ -27,8 +27,7 @@ ACIDS & BASES
 ✅⚗️ [H+] = 10^-pOH
 ✅⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
 
-If you discover any errors in the program, email me at janseltolentino@gmail.com 
-or create an issue on our github page at: https://github.com/Jansel80/ChEmTechPythonCalculator
+If you discover any errors in the program, create an issue on our github page at: https://github.com/Jansel80/ChEmTechPythonCalculator
 """
 #initial setup
 from email.policy import default
