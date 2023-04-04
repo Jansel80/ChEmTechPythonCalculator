@@ -1,12 +1,10 @@
 ﻿"""
 Hello, this is a comment from Jansel regarding the progress of this program
+These are the following topics tackled by the program successfully:
+
 THERMOCHEMISTRY 
 ✅🌡 Standard Enthalpy Change 
-△Hºrxn = ∑(n△Hºf products) - ∑(n△Hºf reactants)
-
 ✅🌡 Standard Entropy Change
-△Sºrxn = ∑(n△Sºf products) - ∑(n△Sºf reactants)
-
 
 CHEMICAL KINETICS 
 🧬 FIRST ORDER REACTIONS 
@@ -14,13 +12,11 @@ CHEMICAL KINETICS
 ✅- When determining the final concentration: ln  [A]t =-kt +ln [A]0
 ✅- When determining the half-life: m= Δm [A]0
 
-
 Chemical Equilibrium 
 ✅🧪 Kc = [products] / [reactants] 
 ✅🧪 Qc = [products] / [reactants] 
 ✅🧪 Kp = [P products] / [P reactants]
 ✅ 🧪 Kc from Kp 
-
 
 ACIDS & BASES 
 ✅⚗️ pH  = 14 - pOH 
@@ -30,6 +26,9 @@ ACIDS & BASES
 ✅⚗️ pH  =-log[OH-]
 ✅⚗️ [H+] = 10^-pOH
 ✅⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
+
+If you discover any errors in the program, email me at janseltolentino@gmail.com 
+or create an issue on our github page at: https://github.com/Jansel80/ChEmTechPythonCalculator
 """
 #initial setup
 from email.policy import default
@@ -37,6 +36,7 @@ import time
 import math
 import sys
 import os
+import webbrowser
 from turtle import goto
 
 #Initial Comment
@@ -531,12 +531,20 @@ def CreditsToGrp1():
         print("This Project was done by Group 1 of 12D Batch 2023\n\nArriola, Bea\nCinco, Erika\nCipriano, JT\nDoctor, Phoebe\nLegaspi, Gavin\nPetalio, Spencer\nSantamaria, Alia\nTolentino, Jansel\n")
         print("Thank You Sir Neil for overseeing our EmpTech Subject!\nThank You Sir Maui for overseeing our Chemistry SUbject!")
         print("\nThe Group would like to express gratitude to those who supported us.\nTo our teachers and classmates. THANK YOU!!!\nBatch 2023 Signing Off")
-        print("\n\n\n\nSigned by Jansel80")
-        creditsRestart2=input("\n\nGo Back to Main Menu? Y or N?\n")
+        creditsRestart2=input("\n\nIf You Would Like To Visit The Github Page, type g or github.\n\nOtherwise, Go Back to Main Menu? Y or N?\n")
+        
         if creditsRestart2.casefold()=="y":
             break
         elif creditsRestart2.casefold()=="n":
             creditsRestart=="Y"
+        #Opens the webpage when g is typed.
+        elif creditsRestart2.casefold()=="github" or creditsRestart2.casefold()=="g":
+            os.system('cls||clear')
+            webbrowser.open("https://github.com/Jansel80/ChEmTechPythonCalculator")
+            print("WebPage Opened on your Default Browser!")
+            time.sleep(3)
+            creditsRestart=="Y"
+
         elif creditsRestart2.casefold() =="turtle80":     
             creditsRestart=="Turtle80"
             os.system('cls||clear')
@@ -574,7 +582,9 @@ while (x=="true"):
     print("//The topics below have their own subsections!//")
     print("(g.) Acids & Bases")
     print("(h.) Chemical Kinetics")
-    print("\n(j.) Credits and Message")
+    print("\n//Miscellaneous//")
+    print("(j.) Credits and Message")
+    print("(u.) Check the Github Page for Updates")
     print("\n(CLOSE) Type anything else to close the calculator\n")
 
     #Input selection for which calculator the user will choose
@@ -609,10 +619,14 @@ while (x=="true"):
             chemicalKinetics()
     #Easter Egg that shows credits. 
         case "j":
-            print("\nYou have accessed the easter egg\n")
+            print("\nYou have accessed The Credits Section\n")
             CreditsToGrp1()
     #Close Condition. If the user inputs anything other than a-j, it defaults to this case
     #which sets x="untrue" ending the loop.
+        case "u":
+            print("\nYou have accessed The Updates Section\n")
+            webbrowser.open("https://github.com/Jansel80/ChEmTechPythonCalculator/releases")
+            time.sleep(3)
         case _:
             os.system('cls||clear')
             print("The calculator will now close.\n")
