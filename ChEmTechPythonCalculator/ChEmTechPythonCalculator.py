@@ -350,53 +350,97 @@ def acids_bases():
         print("BYEBYE")
         os.system('cls||clear')
 
-try:
-    def chemicalKineticsTime():
+
+#Solves for Time in Chemical Kinetics
+def chemicalKineticsTime():
+            #asks for init. conc and final conc.
         try:
             IC=float(input("Please input Initial Concentration:\n"))
             FC=float(input("\nPlease input Final Concentration:\n"))
-            k=float(input("Input the rate constant\n"))
-            unitTime=input("Is the rate constant in Minutes(m) or Seconds(s)\n")
-            unitTimeVar=input("Is Required Time in Minutes (m) or Seconds (s)?\n")
+            k=float(input("Input the rate constant replacing x10^ with e. (i.e 4.10e-2 for 4.10x10^-2)\n"))
+            #asks for the unit of both rate constant and the required answer
+            unitTimeK=input("Is the rate constant in Minutes(m) or Seconds(s)\n")
+            unitTimeRequired=input("Is Required Time in Minutes (m) or Seconds (s)?\n")
 
+            #solves for time
             cKTime = math.log(FC/IC)/(-k)
 
-            if unitTimeVar==unitTime:
-                pass
-            elif unitTimeVar=="s" and unitTime =="m":
+            #If the unit of both rate constant and required is the same, it will simply just continue
+            if unitTimeRequired.casefold()==unitTimeK.casefold():
+                print(cKTime,"",unitTimeRequired)
+                time.sleep(2)
+
+            #If the unit of rate constant is in minutes and the required is in seconds, it will multiply by 60 to turn it into seconds.
+            elif unitTimeRequired.casefold()=="s" and unitTimeK.casefold()=="m":
                 finaltime = cKTime*60
-            elif unitTimeVar=="m" and unitTime =="s":
-                finaltime = cKTime*60
-            print(finaltime,"",unitTimeVar)
-            time.sleep(2)
+                print(finaltime,"",unitTimeRequired)
+                time.sleep(2)
+
+            #If the unit of rate constant is in seconds and the required is in minutes, it will multiply by 60 to turn it into minutes.
+
+            elif unitTimeRequired=="m" and unitTimeK =="s":
+                finaltime = cKTime/60
+                print(finaltime,"",unitTimeRequired)
+                time.sleep(2)
         except:
           os.system('cls||clear')
           print("Please type a numeric value")
           time.sleep(1.5)
           pass
 
-    def chemicalKineticsFC():
+#To find final concentration.
+def chemicalKineticsFC():
         try:
+            #asks for init. conc, time elapsed, k, as well as the units for time and rate.
             IC=float(input("Please input Initial Concentration:\n"))
             cKTime=float(input("\nPlease input Time:\n"))
-            k=float(input("Input the rate constant\n"))
+            unitTimeGiven=input("Is Given Time in Minutes (m) or Seconds (s)?\n")
+            k=float(input("Input the rate constant replacing x10^ with e. (i.e 4.10e-2 for 4.10x10^-2)\n"))
+            unitTimeK=input("Is Rate Constant in Minutes (m) or Seconds (s)?\n")
+        
+
+            #lnA = -k*cKTime + math.log(IC)
+            #FC= math.e**lnA
+
+            #all the same, proceed as normal.
+            if unitTimeGiven.casefold()==unitTimeK.casefold():
+                    lnA = -k*cKTime + math.log(IC)
+                    FC= math.e**lnA
+                    print("\nThe Final Concentration is ", FC, " M after ", cKTime, unitTimeGiven, " of reaction." )
+                    time.sleep(2)
 
 
-            lnA = -k*cKTime + math.log(IC)
-            FC= math.e**lnA
+                #if k is in minutes we need to find the rate per second which means we divide by 60. (There is less rate per second)
+            elif unitTimeGiven.casefold()=="s" and unitTimeK.casefold()=="m":
+                    Nk = k/60
+                    lnA = -k*cKTime + math.log(IC)
+                    FC= math.e**lnA
+                    print("\nThe Final Concentration is ", FC, " M after ", cKTime, unitTimeGiven, " of reaction." )
+                    time.sleep(2)
 
-            print("Your final concentration is ",FC,"M")
+
+                #rate constant is in second while given time is in minute, we can convert either of these.
+                #I just chose to convert rate to keep it interesting. It still provides us the same result.
+            elif unitTimeGiven.casefold()=="m" and unitTimeK.casefold()=="s":
+                    Nk = k*60
+                    lnA = -Nk*cKTime + math.log(IC)
+                    FC= math.e**lnA
+                    print("\nThe Final Concentration is ", FC, " M after ", cKTime, unitTimeGiven, " of reaction." )
+                    time.sleep(2)
         except:
           os.system('cls||clear')
           print("Please type a numeric value")
           time.sleep(1.5)
           pass
 
-    def chemicalKineticsHL():
-        try:
-            k=float(input("Input the rate constant\n"))
 
+
+#Finds Half Life. Since Half Life only relies on constant, we can find Half Life using only the k value.
+def chemicalKineticsHL():
+        try:
+            k=float(input("Input the rate constant replacing x10^ with e. (i.e 4.10e-2 for 4.10x10^-2)\n"))
             HL=math.log(2)/k
+            print("The Half Life is ", HL)
         except:
           os.system('cls||clear')
           print("Please type a numeric value")
@@ -405,9 +449,9 @@ try:
 
 
 #Chemical Kinetics section. The restart condition works similarly to the acids_bases subsection. 
-    def chemicalKinetics():
+def chemicalKinetics():
         os.system('cls||clear')
-        print("Chemical Kinetics Section Active\n\nAt this time, only first order reactions can be solved.\n")
+        print("Chemical Kinetics Section Active\n\nAt this time, only first order reactions can be solved for concentrations, time, and HL.\n")
         loading_screen()
         time.sleep(0.75)
         chemicalKineticsProceed = 1
@@ -478,8 +522,6 @@ try:
                     restartCKConditionDecision = 0
 
             chemicalKineticsProceed = restartCKConditionDecision
-except:
-    print("An exception has occured with one of the chemical kinetics calculators.")
 
 #Credits Section For Group 1
 def CreditsToGrp1():
