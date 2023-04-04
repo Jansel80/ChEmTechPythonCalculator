@@ -326,10 +326,13 @@ def acids_bases():
 
         except:
             os.system('cls||clear')
-            print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Returning you now to the main program.")
-            break
+            print("An error has occured with the Acids and Bases Section.\n You may have inputted something other than a number. \n Restart prompt incoming.")
+            time.sleep(1)
+            os.system('cls||clear')
+            pass
 
         #Restart Condition with a short wait time before.
+
         time.sleep(0.5)
         print("")
         print("Press Y to Restart, N if you want to end\n\n")
