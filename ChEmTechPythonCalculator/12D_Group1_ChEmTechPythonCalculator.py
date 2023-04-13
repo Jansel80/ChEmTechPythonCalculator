@@ -28,6 +28,7 @@ ACIDS & BASES
 ✅⚗️ pH + pOH = 14 [should auto calculate from the pH and pOH]
 
 If you discover any errors in the program, create an issue on our github page at: https://github.com/Jansel80/ChEmTechPythonCalculator
+Version: 1.1
 """
 #initial setup
 from email.policy import default
