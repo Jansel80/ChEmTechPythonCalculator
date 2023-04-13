@@ -216,7 +216,7 @@ def solveStandardEnthalpyChange():
             
 
                 # calculate the standard enthalpy change ΔH°
-                delta_h = (c_coeff * hf_c + d_coeff * hf_d) - (a_coeff * hf_a + b_coeff * hf_b)
+                delta_h = ((c_coeff * hf_c) + (d_coeff * hf_d)) - ((a_coeff * hf_a) + (b_coeff * hf_b))
             except: 
                 os.system('cls||clear')
                 print("There was an error. Please type a numeric value")
@@ -232,6 +232,7 @@ def solveStandardEntropyChange():
     #Restarts Entropy Code when Y. Works the same as the above 
     chemEntropyRestarter="yes"
     while chemEntropyRestarter=="ya" or chemEntropyRestarter=="Y" or chemEntropyRestarter=="yes" or chemEntropyRestarter=="y" or chemEntropyRestarter=="Yes":    
+        os.system('cls||clear')
         # define the coefficients of the balanced chemical equation
         gatherCoefficientsABCD()
 
@@ -243,7 +244,7 @@ def solveStandardEntropyChange():
             s_d = float(input("Enter the standard entropy of product D (J/(mol*K)): "))
 
             # calculate the standard entropy change ΔS°
-            delta_s = (c_coeff * s_c + d_coeff * s_d) - (a_coeff * s_a + b_coeff * s_b)
+            delta_s = ((c_coeff * s_c) + (d_coeff * s_d)) - ((a_coeff * s_a) + (b_coeff * s_b))
         except: 
                 os.system('cls||clear')
                 print("There was an error. Please type a numeric value")
@@ -266,7 +267,7 @@ def acids_bases():
         print("")
         loading_screen()
         print("\nWhat are you looking for?:\n")
-        print("a.)Finding pH from pOH\nb.) Finding pOH from pH\nC.) Finding pH from H+\nD.) Finding H+ from pH\nE.) Finding Finding pOH from OH-\nF.) Finding OH- from pOH")
+        print("a.) Finding pH from pOH\nb.) Finding pOH from pH\nC.) Finding pH from H+\nD.) Finding H+ from pH\nE.) Finding Finding pOH from OH-\nF.) Finding OH- from pOH")
         acids_bases_selection = input()
         try:
             #match case wherein the user inputs a letter and whatever calculator corresponds to that letter will be utilized.
@@ -276,26 +277,24 @@ def acids_bases():
                     print("Find pH from pOH")
                     print("")
                     pOHInput = float(input("Enter the value of pOH\n"))
-                    pOHInputRound = round(pOHInput)
-                    pH = 14-pOHInputRound
-                    print("\n Your PH is " , pH, "\n")
-                    print("The total value of pH + pOH then should be 14 =", int(pH+pOHInput))
+                    pH = float(float(14.00) - float(pOHInput))
+                    print("\n Your PH is " , (pH), "\n")
+                    print("The total value of pH + pOH then should be 14 =", float(pH+pOHInput))
             
                 case "b":
                     print("")
                     print("Find pOH from pH")
                     print("")
-                    pHInput = float(input("Enter the value of pOH\n"))
-                    pHInputRound = round(pHInput)
-                    pOH = 14-pHInputRound
-                    print("\n Your PH is " , pH, "\n")
-                    print("The total value of pH + pOH then should be 14 =", int(pOH+pHInput))
+                    pHInput = float(input("Enter the value of pH\n"))
+                    pOH = float(float(14.00)-float(pHInput))
+                    print("\n Your pOH is " , (pOH), "\n")
+                    print("The total value of pH + pOH then should be 14 =", float(pOH+pHInput))
 
                 case "c":
                     print("")
                     print("Finding pH from H+")
                     print("")
-                    HInput = float(input("Enter the numerical value of H+\n"))
+                    HInput = float(input("Enter the numerical value of H+ with x10^n as en i.e 1.0x10^3 = 1.0e3\n"))
                     pH = -math.log10(HInput)
                     print("\n Your pH is " , round(pH), "\n")
 
@@ -311,7 +310,7 @@ def acids_bases():
                     print("")
                     print("Find pOH from OH-")
                     print("")
-                    OHInput = float(input("Enter the numerical value of OH-\n"))
+                    OHInput = float(input("Enter the numerical value of OH- with x10^n as en i.e 1.0x10^3 = 1.0e3\n"))
                     pOH = -math.log10(OHInput)
                     print("\n Your pOH is " , round(pOH), "\n")
 
